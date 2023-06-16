@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ridease-admin
+  name: ridease-admin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ridease-admin
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ridease-admin
+    spec:
+      containers:
+      - image: ialexeze/rideease:admin
+        name: rideease
+        ports:
+        - containerPort: 3000
+        resources: {}
+        env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PORT
+              value: '5432'
+            - name: POSTGRES_PASSWORD
+              value: postgres
+            - name: POSTGRES_DB
+              value: db
+            - name: POSTGRES_HOST
+              value: postgres
+            - name: SECRET_KEY
+              value: ZLHxbIi6kNbAFz1BTzaLtoni8
+            - name: DATABASE_URI
+              value: postgresql://postgres:postgres@postgres:5432/db
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ridease-admin   
+  name: ridease-admin    
+spec:
+  ports:
+  - port: 3000
+    protocol: TCP        
+    targetPort: 3000
+    nodePort: 32000     
+  selector:
+    app: ridease-admin   
+  type: NodePort
+status:
+  loadBalancer: {}

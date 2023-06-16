@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: docker.io/library/postgres:alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PORT
+              value: '5432'
+            - name: POSTGRES_PASSWORD
+              value: postgres
+            - name: POSTGRES_DB
+              value: db
+            - name: POSTGRES_HOST
+              value: postgres
+            - name: SECRET_KEY
+              value: ZLHxbIi6kNbAFz1BTzaLtoni8
+            - name: DATABASE_URI
+              value: postgresql://postgres:postgres@postgres:5432/db
+        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  name: postgres
+spec:
+  ports:
+  - port: 5432
+    protocol: TCP        
+    targetPort: 5432     
+  selector:
+    app: postgres        
+status:
+  loadBalancer: {}        
+        
+        
+        
+        
+        
+        
+        
+        
+        

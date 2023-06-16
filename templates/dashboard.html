@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RideEase Dashboard</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+    /* Global Styles */
+    body {
+      background-color: #f8f9fa;
+    }
+
+    h2 {
+      color: #000;
+    }
+
+    hr {
+      background-color: #000;
+      height: 1px;
+      border: none;
+      margin: 20px 0;
+    }
+
+    /* Sidebar Styles */
+    .bg-dark {
+      background-color: #000;
+    }
+
+    .text-white {
+      color: #fff;
+    }
+
+    .nav-item {
+      padding: 8px 20px;
+    }
+
+    .nav-link {
+      color: #fff;
+    }
+
+    .nav-link:hover {
+      color: #007bff;
+    }
+
+    /* Navigation Pane Styles */
+    .navbar {
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #000;
+    }
+
+    .navbar-brand {
+      color: #000;
+    }
+
+    .navbar-nav .nav-link {
+      color: #000;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #007bff;
+    }
+
+    /* Content Area Styles */
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    /* Responsive styles */
+    @media (max-width: 576px) {
+
+/* Mobile-specific styles */
+}
+
+@media (min-width: 577px) and (max-width: 991px) {
+}
+    }
+    
+  </style>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3 bg-dark text-white">
+        <h4 class="mt-4 mb-4 ml-3">Dashboard</h4>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Profile Settings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Payment History</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Booking History</a>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Earnings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Referral History</a>
+            </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-md-9">
+        <!-- Navigation Pane -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#"><strong>Wallet: $50</strong></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <!-- Content Area -->
+        <div class="container mt-4">
+          <h2>Welcome, {{ name }}!</h2>
+          <p>Enjoy your Ride and Earn journey</p>
+          <hr>
+          <!-- <h4>Upload Picture</h4>
+          Add picture upload form here -->
+          <hr>
+          <!-- <h4>Booking History</h4>
+          Display booking history here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
