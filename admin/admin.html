@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      background-color: #4caf50;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .button.red {
+      background-color: #f44336;
+    }
+
+    .button.green:hover {
+      background-color: #45a049;
+    }
+
+    .button.red:hover {
+      background-color: #e53935;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    /* Basic Styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 4000px;
+    }
+
+    .button-container button {
+      margin-top: 10px;
+      padding: 8px 1px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Admin Dashboard</h1>
+  <br>
+  <div class="button-container">
+    <a href="/download" class="button green">Download Data as PDF</a>
+</div>
+<hr>
+<hr>
+
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data rows will be dynamically added here -->
+    </tbody>
+  </table>
+<!-- Add the necessary JavaScript code -->
+<script>
+ 
+    // Function to fetch and populate the data table
+    function populateDataTable() {
+      fetch('/data') // Replace with your API route to fetch the data
+        .then(response => response.json())
+        .then(data => {
+          const dataTableBody = document.querySelector('#dataTable tbody');
+          dataTableBody.innerHTML = ''; // Clear existing table rows
+  
+          // Sort the data array by timestamp in descending order (most recent first)
+          data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+  
+          data.forEach(row => {
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+              <td>${row.id}</td>
+              <td>${row.name}</td>
+              <td>${row.email}</td>
+              <td>${row.created_at}
+            `;
+            dataTableBody.insertBefore(newRow, dataTableBody.firstChild); // Insert new rows at the beginning
+          });
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+    // Function to handle the clear button action
+  function handleClearButton() {
+    const clearButton = document.querySelector('#clearButton');
+    const nameInput = document.querySelector('#name');
+    const emailInput = document.querySelector('#email');
+    const passwordInput = document.querySelector('#password');
+
+    clearButton.addEventListener('click', () => {
+      // Clear the form fields
+      nameInput.value = '';
+      emailInput.value = '';
+      passwordInput.value = '';
+    });
+  }
+  // Function to handle the clear button action
+  function handleClearButton() {
+    const clearButton = document.querySelector('#clearButton');
+
+    clearButton.addEventListener('click', () => {
+      // Show confirmation prompt
+      if (confirm("Are you sure you want to clear the data?")) {
+        // Redirect to the clear route
+        window.location.href = "/admin";
+      }
+    });
+  }
+
+  // Call the necessary functions when the page loads
+  window.onload = function() {
+    populateDataTable();
+    handleClearButton();
+  };
+
+    // Call the populateDataTable function when the page loads
+    document.addEventListener('DOMContentLoaded', populateDataTable);
+  </script>
+  </body>
+</html>
