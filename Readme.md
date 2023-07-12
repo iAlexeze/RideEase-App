@@ -1,57 +1,53 @@
-RideEase App
+# RideEase App
 RideEase is a ride-sharing application that provides convenient transportation services to users. It features user authentication with sign-up and login functionality, as well as a beautiful user dashboard to manage rides. Additionally, it offers an admin dashboard to view user data stored in a PostgreSQL database.
 
-Features
-User authentication: Sign up and login to access the application.
-User dashboard: Manage rides and view ride history.
-Admin dashboard: View user data and perform administrative tasks.
-PostgreSQL database: Data storage for user information and ride data.
-Prerequisites
+## Features
+-  **User authentication:** Sign up and login to access the application.
+-  **User dashboard:** Manage rides and view ride history.
+-  **Admin dashboard:** View user data and perform administrative tasks.
+- **PostgreSQL database:** Data storage for user information and ride data.
+
+## Prerequisites
 Before running the RideEase application, you need to set up a PostgreSQL server. You can choose to run it locally, in a Docker container, or in a Kubernetes cluster.
 
-Setting up PostgreSQL
-Local setup: Install PostgreSQL on your local machine by following the official documentation: PostgreSQL Downloads.
+## Setting up PostgreSQL
 
-Docker setup: If you prefer running RideEase in a Docker container, ensure that Docker is installed on your machine. You can pull the RideEase Docker image from Docker Hub using the following command:
+**Local setup:** Install PostgreSQL on your local machine by following the official documentation: PostgreSQL Downloads.
 
-docker pull ialexeze/rideease:1.0
-Launch the PostgreSQL container with the necessary environment variables and port mapping:
+## Docker setup
+If you prefer running RideEase in a Docker container, ensure that Docker is installed on your machine. You can pull the RideEase Docker image from Docker Hub using the following command:
 
-docker run -d --name rideease -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 ialexeze/rideease:1.0
-Kubernetes setup: To deploy RideEase in a Kubernetes cluster, ensure you have kubectl installed and configured to access your cluster. Apply the Kubernetes manifest file to create the necessary resources:
+    docker pull ialexeze/rideease:user
+    docker pull ialexeze/rideease:admin
+    
 
-kubectl apply -f rideease-kubernetes.yaml
-Running the RideEase App
-Clone the RideEase repository to your local machine:
+**Launch the PostgreSQL container with the necessary environment variables and port mapping:**
 
-git clone <repository-url>
-Install the required dependencies using the following command:
+    docker run -d --name postgresql -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 postgresl:alpine
 
-npm install
-Set the environment variables for the application. Create a .env file in the root directory and configure the following variables:
+**Launch the User and Admin container with the necessary environment variables and port mapping:**
 
-SECRET_KEY=<your-secret-key>
-DATABASE_URL=<postgresql-connection-url>
-Start the RideEase application:
+    docker run -d --name user -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 ialexeze/rideease:user
+    docker run -d --name admin -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 ialexeze/rideease:admin
 
-sql
-Copy code
-node app.js
-The application will be accessible at http://localhost:3000.
+## Kubernetes setup:
+To deploy RideEase in a Kubernetes cluster, ensure you have kubectl installed and configured to access your cluster. Apply the Kubernetes manifest file to create the necessary resources:
 
-Usage
+    kubectl apply -f rideease-kubernetes.yaml
+
+## Usage
 Visit http://localhost:3000 in your browser.
 Sign up for a new account or log in if you already have one.
 After successful login, you will be redirected to the user dashboard.
 Navigate to the admin dashboard to view user data and perform administrative tasks.
-Contributing
+
+## Contributing
 Contributions to RideEase are welcome! If you have any suggestions, improvements, or bug fixes, please open an issue or submit a pull request to the GitHub repository.
 
-License
+## License
 RideEase is released under the MIT License. Feel free to use, modify, and distribute the code as per the terms of the license.
 
-
-Contributors:
+## Contributors:
 Alex Eze
 Esther Oluebube
 
@@ -63,11 +59,6 @@ SQLAlchemy: SQLAlchemy
 Node.js: Node.js
 Express: Express.js
 PostgreSQL: PostgreSQL
-Contact
+
+## Contact
 For any inquiries or support, please contact the RideEase development team at rideease@example.com.
-
-
-
-
-
-
