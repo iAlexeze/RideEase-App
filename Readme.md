@@ -27,19 +27,28 @@ If you prefer running RideEase in a Docker container, ensure that Docker is inst
 
 **Launch the User and Admin container with the necessary environment variables and port mapping:**
 
-    docker run -d --name user -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 ialexeze/rideease:user
-    docker run -d --name admin -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 ialexeze/rideease:admin
+    docker run -d --name user -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 3000:3000 ialexeze/rideease:user
+    docker run -d --name admin -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 2000:2000 ialexeze/rideease:admin
 
 ## Kubernetes setup:
-To deploy RideEase in a Kubernetes cluster, ensure you have kubectl installed and configured to access your cluster. Apply the Kubernetes manifest file to create the necessary resources:
-
-    kubectl apply -f rideease-kubernetes.yaml
+To deploy RideEase in a Kubernetes cluster, ensure you have kubectl installed and configured to access your cluster. Apply the Kubernetes manifest files to create the necessary resources:
+   
+    cd k8s
+    kubectl apply -f postgres.yaml
+    kubectl apply -f user.yaml
+    kubectl apply -f admin.yaml
+    
 
 ## Usage
-Visit http://localhost:3000 in your browser.
+### Authentication
+Visit http://localhost:31000 in your browser.
 Sign up for a new account or log in if you already have one.
 After successful login, you will be redirected to the user dashboard.
-Navigate to the admin dashboard to view user data and perform administrative tasks.
+
+### Admin Dashboard
+Visit http://localhost:32000 in your browser.
+
+This will display the admin dashboard to view user data and perform administrative tasks.
 
 ## Contributing
 Contributions to RideEase are welcome! If you have any suggestions, improvements, or bug fixes, please open an issue or submit a pull request to the GitHub repository.
