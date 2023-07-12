@@ -1,0 +1,18 @@
+---
+- name: Test role by installing Apache2
+  hosts: db
+  become: true
+  roles:
+    - myrole
+
+- name: Verify Apache2 service is running
+  hosts: db
+  tasks:
+    - name: Check if Apache2 is running
+      command: systemctl is-active apache2
+      register: apache_status
+
+    - name: Fail if Apache2 service is not running
+      fail:
+        msg: "Apache2 service is not running"
+      when: apache_status.stdout != "active"

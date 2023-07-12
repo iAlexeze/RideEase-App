@@ -1,0 +1,15 @@
+myproject/
+├── roles/
+│   ├── common/
+│   │   ├── tasks/
+│   │   │   └── main.yml
+│   │   └── vars/
+│   │       └── main.yml
+│   └── myrole/
+│       ├── tasks/
+│       │   └── main.yml
+│       ├── handlers/
+│       │   └── main.yml
+│       └── vars/
+│           └── main.yml
+└── play.yml

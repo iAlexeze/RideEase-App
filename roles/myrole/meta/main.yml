@@ -1,0 +1,24 @@
+galaxy_info:
+  author: Alex Eze
+  description: Role for installing and configuring Apache2
+  license: MIT
+  min_ansible_version: 2.9
+
+  galaxy_tags:
+    - webserver
+    - apache
+  
+  platforms:
+  - name: Ubuntu
+    versions:
+      - bionic
+      - focal
+  - name: CentOS
+    versions:
+      - 7
+      - 8
+
+dependencies:
+  - name: common
+    version: ">=1.0.0"
+

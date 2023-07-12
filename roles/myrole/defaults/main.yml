@@ -1,0 +1,4 @@
+---
+# defaults file for myrole
+apache_port: 80
+apache_conf_dir: /etc/apache2

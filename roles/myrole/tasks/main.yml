@@ -1,0 +1,56 @@
+---
+# tasks file for myrole
+
+# For Ubuntu
+
+- name: Install Apache on Ubuntu
+  block:
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+      tags:
+        - apache
+
+    - name: Start and Setup Webserver
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+      tags:
+        - apache
+
+    - name: Copy index.html
+      copy:
+        src: /mnt/c/devops/index.html
+        dest: /var/www/html/
+      tags:
+        - apache
+  when: ansible_facts['os_family'] == 'Debian'
+
+# For RedHat/CentOS
+
+- name: Install Httpd on RedHat/CentOS
+  block:
+    - name: Install Httpd
+      yum:
+        name: httpd
+        state: present
+      tags:
+        - httpd
+
+    - name: Start and Setup Webserver
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+      tags:
+        - httpd
+
+    - name: Copy index.html
+      copy:
+        src: /mnt/c/devops/index.html
+        dest: /var/www/html/
+      tags:
+        - httpd
+  when: ansible_facts['os_family'] == 'RedHat'

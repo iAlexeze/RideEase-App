@@ -1,0 +1,48 @@
+---
+    - name: Install required packages
+      block:
+        - name: list of packages
+          apt:
+            name:
+              - curl
+              - git
+              - vim
+            state: present
+
+        - name: Add a user
+          ansible.builtin.user:
+            name: ialex
+            state: present
+            shell: /bin/bash
+            groups: sudo
+            password: "{{ 'ialex_pass' | password_hash('sha512', 'mysecretsalt') }}"
+
+        - name: Debug current time
+          debug:
+            msg: "Current time: {{ ansible_date_time['date'] }} {{ ansible_date_time['time'] }}"
+
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: Install required packages
+      block:
+        - name: list of packages
+          yum:
+            name:
+              - curl
+              - git
+              - vim
+            state: present
+
+        - name: Add a user
+          ansible.builtin.user:
+            name: ialex
+            state: present
+            shell: /bin/bash
+            groups: wheel
+            password: "{{ 'ialex_pass' | password_hash('sha512', 'mysecretsalt') }}"
+
+        - name: Debug current time
+          debug:
+            msg: "Current time: {{ ansible_date_time['date'] }} {{ ansible_date_time['time'] }}"
+
+      when: ansible_distribution == 'RedHat'
